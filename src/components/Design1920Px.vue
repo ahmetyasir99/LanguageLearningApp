@@ -169,23 +169,20 @@ export default {
         if (this.currentWord) {
           this.result();
         }
+        
         this.wordIndex = Math.floor(Math.random() * this.wordList.length);
         this.currentImage = this.wordList[this.wordIndex].picture;
         console.log(document.getElementsByClassName("picture").src);
         let randomLanguage = Math.round(Math.random());
-        const language = randomLanguage == 0 ? "serbian" : "english"; //random oalrak dil belirleme
-        const ansLanguage = language == "serbian" ? "english" : "serbian"; //belirlenen dilin zıttı, cevap için
-        this.currentWord = this.wordList[this.wordIndex][language]; //ekranda görülecek dildeki kelime
-        this.answerWord = this.wordList[this.wordIndex][ansLanguage]; //yazılması gereken dildeki karşılığı
-
-        console.log("wordIndex:", this.wordIndex);
-        console.log("currentword:", this.currentWord);
-        console.log("answer:", this.answerWord);
-        console.log(this.wordList);
+        const language = randomLanguage == 0 ? "serbian" : "english";
+        const ansLanguage = language == "serbian" ? "english" : "serbian";
+        this.currentWord = this.wordList[this.wordIndex][language];
+        this.answerWord = this.wordList[this.wordIndex][ansLanguage];
         this.inputWord = "";
       } else {
         this.isDisabled = true;
-        this.currentWord = "Congratulations";
+        this.currentWord = "Congratulations! All of them are true";//set timeout can be used
+        location.reload();
       }
     },
     result() {
@@ -199,8 +196,6 @@ export default {
         this.numberOfFalse += 1;
         this.trueRate = this.numberOfTrue + " / " + this.totalAttempts;
         this.falseRate = this.numberOfFalse + " / " + this.totalAttempts;
-        //yeni bir kelime göster
-        console.log("hey");
       }
     },
 
@@ -229,21 +224,15 @@ export default {
    
   }
   .logo {
-   
     margin: 0 auto;
-   
     height: 80%;
     margin-top: 5px;
-
-    
   }
   .content {
     margin: 0 auto;
     width: 80%;
-    
     display: flex;
     flex-direction: column;
-   
     justify-content: start;
     background-color: white;
     margin-bottom: 10px;
@@ -251,7 +240,6 @@ export default {
 border-radius: 10px;
   }
   .imageDiv {
-    
     width: 100%;
     display: flex;
     flex-direction: column;
